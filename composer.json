@@ -1,5 +1,5 @@
 {
-    "name": "rezzza/alice-extension",
+    "name": "inextensodigital/alice-extension",
     "type": "behat-extension",
     "description": "Alice extension for Behat",
     "keywords": ["symfony", "alice", "fixtures", "bdd"],
@@ -33,12 +33,7 @@
     "autoload": {
         "psr-0": { "Rezzza\\AliceExtension": "src/" }
     },
-
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.3.x-dev"
-        }
-    },
+    
     "config": {
         "bin-dir": "bin"
     }
