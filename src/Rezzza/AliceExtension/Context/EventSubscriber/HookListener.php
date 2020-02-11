@@ -3,8 +3,10 @@
 namespace Rezzza\AliceExtension\Context\EventSubscriber;
 
 use Behat\Behat\EventDispatcher\Event\BeforeFeatureTested;
+use Behat\Behat\EventDispatcher\Event\BeforeOutlineTested;
 use Behat\Behat\EventDispatcher\Event\FeatureTested;
 use Behat\Behat\EventDispatcher\Event\BeforeScenarioTested;
+use Behat\Behat\EventDispatcher\Event\OutlineTested;
 use Behat\Behat\EventDispatcher\Event\ScenarioTested;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -31,8 +33,9 @@ class HookListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-           FeatureTested::BEFORE => 'beforeFeature',
-           ScenarioTested::BEFORE => 'beforeScenario'
+            FeatureTested::BEFORE => 'beforeFeature',
+            ScenarioTested::BEFORE => 'beforeScenario',
+            OutlineTested::BEFORE => 'beforeOutline',
         );
     }
 
@@ -72,18 +75,21 @@ class HookListener implements EventSubscriberInterface
 
 
     /**
-     * Listens to "outline.example.before" event.
+     * Listens to "outline.before" event.
      *
      * @param \Behat\Behat\Event\OutlineExampleEvent $event
      */
-    /*public function beforeOutlineExample(OutlineExampleEvent $event)
+    public function beforeOutline(BeforeOutlineTested $event)
     {
         if ('scenario' !== $this->lifetime) {
             return;
         }
 
+        list($adapter, $fixtureClass) = $this->extractAdapterConfig($event->getFeature()->getTags());
+
+        $this->executor->changeAdapter($adapter, $fixtureClass);
         $this->executor->purge();
-    }*/
+    }
 
     private function isAliceTag($tag)
     {
