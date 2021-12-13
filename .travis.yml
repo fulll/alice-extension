@@ -1,6 +1,7 @@
 language: php
 
 dist: trusty
+sudo: required
 
 php:
     - 7.0
@@ -10,7 +11,7 @@ install:
     - git clone --branch trusty --depth=1 https://github.com/rezzza/travis-ci.git ~/.rezzza.travis-ci
     - ~/.rezzza.travis-ci/php/bootstrap.sh apcu
     - phpenv rehash
-    - ~/.rezzza.travis-ci/mariadb/bootstrap.sh
+    - ~/.rezzza.travis-ci/mariadb/bootstrap-trusty.sh
     - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer install --prefer-dist --no-interaction --no-scripts
     - mkdir -p web/code-coverage
     - cp app/config/parameters.yml.dist app/config/parameters.yml
