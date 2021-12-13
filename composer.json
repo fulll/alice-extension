@@ -1,5 +1,5 @@
 {
-    "name": "inextensodigital/alice-extension",
+    "name": "fulll/alice-extension",
     "type": "behat-extension",
     "description": "Alice extension for Behat",
     "keywords": ["symfony", "alice", "fixtures", "bdd"],
